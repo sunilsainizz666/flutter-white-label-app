@@ -1,0 +1,123 @@
+name: flutter_white_list
+description: "Production-ready Flutter template (GetX + Dio + freezed)."
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.12.2
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+
+  # State management / DI / routing
+  get: ^4.7.3
+  get_it: ^9.2.1
+
+  # Networking
+  dio: ^5.11.0
+  http: ^1.6.0
+  pretty_dio_logger: ^1.4.0
+  connectivity_plus: ^7.3.1
+
+  # Local storage
+  get_storage: ^2.1.1
+  shared_preferences: ^2.5.5
+  hive: ^2.2.3
+  hive_flutter: ^1.1.0
+
+  # Secure storage
+  flutter_secure_storage: ^11.0.0
+
+  # Environment config
+  flutter_dotenv: ^6.0.1
+
+  # Logging
+  logger: ^2.7.0
+
+  # Responsive UI
+  flutter_screenutil: ^5.9.3
+
+  # UI / UX helpers
+  flutter_svg: ^2.3.0
+  cached_network_image: ^3.4.1
+  shimmer: ^3.0.0
+  lottie: ^3.5.1
+  intl: ^0.20.3
+
+  # Validation
+  form_validator: ^2.1.1
+
+  # Firebase (skeletons only, not wired at startup)
+  firebase_core: ^4.13.0
+  firebase_auth: ^6.5.7
+  cloud_firestore: ^6.8.0
+  firebase_messaging: ^16.5.0
+  firebase_crashlytics: ^5.2.7
+  firebase_analytics: ^12.4.6
+
+  # Utilities
+  equatable: ^2.1.0
+  freezed_annotation: ^3.1.0
+  json_annotation: ^4.12.0
+  package_info_plus: ^10.2.1
+  # NOTE: device_info_plus intentionally omitted — 13.x uses `isiOSAppOnVision`
+  # which needs Xcode 26.1+ (iOS 26.1 SDK). Re-enable when your toolchain
+  # ships that SDK.
+  permission_handler: ^13.0.1
+  url_launcher: ^6.3.2
+  share_plus: ^13.3.0
+  gap: ^3.0.1
+  flutter_native_splash: ^2.4.8
+  app_settings: ^8.0.3
+  image_picker: ^1.2.3
+  image_cropper: ^12.2.1
+  uuid: ^4.6.0
+  flutter_timezone: ^5.1.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  integration_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  mocktail: ^1.0.5
+
+  # Code generation
+  build_runner: ^2.15.1
+  freezed: ^4.0.0-dev.3
+  json_serializable: ^6.14.1
+  flutter_launcher_icons: ^0.14.4
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - .env.dev
+    - .env.staging
+    - .env.prod
+    - assets/images/
+    - assets/icons/
+    - assets/lottie/
+
+# Regenerate: dart run flutter_launcher_icons
+# Requires assets/icons/app_icon.png (1024x1024 recommended).
+flutter_launcher_icons:
+  android: true
+  ios: true
+  remove_alpha_ios: true
+  image_path: assets/icons/app_icon.png
+  min_sdk_android: 21
+
+# Regenerate: dart run flutter_native_splash:create
+# Requires assets/images/splash_logo.png.
+flutter_native_splash:
+  color: "#2563EB"
+  image: assets/images/splash_logo.png
+  android_12:
+    color: "#2563EB"
+    image: assets/images/splash_logo.png
+  dark:
+    color: "#0F172A"
+    image: assets/images/splash_logo.png

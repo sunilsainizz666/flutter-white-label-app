@@ -1,0 +1,58 @@
+# OS / editor
+.DS_Store
+Thumbs.db
+*.swp
+.idea/
+*.iml
+.vscode/
+
+# Flutter / Dart
+.dart_tool/
+.flutter-plugins
+.flutter-plugins-dependencies
+.packages
+.pub-cache/
+.pub/
+build/
+coverage/
+*.dSYM.zip
+*.dSYM/
+app.*.symbols
+app.*.map.json
+
+# Env / secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+!ios/**/*.key
+
+# Android
+android/.gradle/
+android/local.properties
+android/key.properties
+android/**/*.jks
+android/**/*.keystore
+android/app/google-services.json
+android/**/GeneratedPluginRegistrant.java
+
+# iOS / macOS
+ios/Pods/
+ios/Flutter/Generated.xcconfig
+ios/Flutter/ephemeral/
+ios/Flutter/flutter_export_environment.sh
+ios/Runner/GoogleService-Info.plist
+ios/Runner/GeneratedPluginRegistrant.*
+ios/firebase_app_id_file.json
+macos/Pods/
+macos/Flutter/ephemeral/
+macos/Flutter/GeneratedPluginRegistrant.swift
+**/xcuserdata/
+**/DerivedData/
+
+# Linux / Windows / Web
+linux/flutter/ephemeral/
+windows/flutter/ephemeral/
+web/main.dart.js*
+lib/generated_plugin_registrant.dart

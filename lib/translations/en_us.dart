@@ -1,0 +1,18 @@
+const Map<String, String> enUS = {
+  'app.name': 'Flutter White List',
+  'auth.welcome': 'Welcome back',
+  'auth.login': 'Sign in',
+  'auth.email': 'Email',
+  'auth.password': 'Password',
+  'auth.forgot_password': 'Forgot password?',
+  'auth.logout': 'Log out',
+  'common.retry': 'Retry',
+  'common.cancel': 'Cancel',
+  'common.confirm': 'Confirm',
+  'common.ok': 'OK',
+  'errors.something_went_wrong': 'Something went wrong',
+  'errors.no_internet': 'No internet connection',
+  'errors.session_expired': 'Session expired. Please log in again.',
+  'empty.title': 'Nothing here yet',
+  'empty.message': 'When there is data it will show up here.',
+};
