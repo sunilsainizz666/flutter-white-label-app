@@ -13,19 +13,14 @@ dependencies:
 
   # State management / DI / routing
   get: ^4.7.3
-  get_it: ^9.2.1
 
   # Networking
   dio: ^5.11.0
-  http: ^1.6.0
   pretty_dio_logger: ^1.4.0
   connectivity_plus: ^7.3.1
 
   # Local storage
-  get_storage: ^2.1.1
   shared_preferences: ^2.5.5
-  hive: ^2.2.3
-  hive_flutter: ^1.1.0
 
   # Secure storage
   flutter_secure_storage: ^11.0.0
@@ -76,6 +71,27 @@ dependencies:
   uuid: ^4.6.0
   flutter_timezone: ^5.1.0
 
+  # Typography
+  google_fonts: ^6.2.1
+
+  # Localization
+  easy_localization: ^3.0.7
+
+  # Deep linking
+  app_links: ^6.4.0
+
+  # Force-update gating
+  upgrader: ^13.1.0
+
+  # Image compression
+  flutter_image_compress: ^2.3.0
+
+  # Firebase performance monitoring
+  firebase_performance: ^0.11.4+6
+
+  # Certificate pinning (Dio interceptor)
+  http_certificate_pinning: ^3.0.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
@@ -86,9 +102,15 @@ dev_dependencies:
 
   # Code generation
   build_runner: ^2.15.1
-  freezed: ^4.0.0-dev.3
+  freezed: ^3.0.0
   json_serializable: ^6.14.1
   flutter_launcher_icons: ^0.14.4
+
+  # Build flavors
+  flutter_flavorizr: ^2.5.0
+
+  # Golden testing
+  golden_toolkit: ^0.15.0
 
 flutter:
   uses-material-design: true
@@ -100,6 +122,7 @@ flutter:
     - assets/images/
     - assets/icons/
     - assets/lottie/
+    - assets/translations/
 
 # Regenerate: dart run flutter_launcher_icons
 # Requires assets/icons/app_icon.png (1024x1024 recommended).
@@ -121,3 +144,28 @@ flutter_native_splash:
   dark:
     color: "#0F172A"
     image: assets/images/splash_logo.png
+
+# Build flavors — per-client white-label identities.
+# Replace 'clientA' with real client names/IDs before running:
+#   dart run flutter_flavorizr
+#
+# Flavors (client identity) compose with .env (backend environment):
+#   flutter run --flavor clientA --dart-define=FLAVOR=dev
+#   flutter build apk --flavor clientA --dart-define=FLAVOR=prod
+flavorizr:
+  app:
+    android:
+      flavorDimensions: "client"
+    ios:
+      buildSettings:
+        # Shared across all flavors
+        DEVELOPMENT_TEAM: "XXXXXXXXXX"
+
+  flavors:
+    clientA:
+      app:
+        name: "Client A"
+      android:
+        applicationId: "com.clienta.app"
+      ios:
+        bundleId: "com.clienta.app"

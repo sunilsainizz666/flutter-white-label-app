@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
+import 'package:upgrader/upgrader.dart';
 
 import 'core/bindings/initial_binding.dart';
 import 'core/constants/app_strings.dart';
@@ -31,6 +32,9 @@ class App extends StatelessWidget {
         fallbackLocale: AppTranslations.fallbackLocale,
         supportedLocales: AppTranslations.supportedLocales,
         defaultTransition: Transition.cupertino,
+        builder: (context, child) => UpgradeAlert(
+          child: child ?? const SizedBox.shrink(),
+        ),
       ),
     );
   }

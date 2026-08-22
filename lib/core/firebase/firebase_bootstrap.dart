@@ -1,4 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_performance/firebase_performance.dart';
 
 import '../config/env_config.dart';
 import '../utils/logger_util.dart';
@@ -25,6 +26,7 @@ class FirebaseBootstrap {
     try {
       await Firebase.initializeApp();
       _isAvailable = true;
+      await _initPerformance();
       LoggerUtil.i('Firebase initialized');
       return true;
     } catch (e, s) {
@@ -36,6 +38,15 @@ class FirebaseBootstrap {
       );
       _isAvailable = false;
       return false;
+    }
+  }
+
+  static Future<void> _initPerformance() async {
+    try {
+      final perf = FirebasePerformance.instance;
+      await perf.setPerformanceCollectionEnabled(true);
+    } catch (e) {
+      LoggerUtil.w('Firebase Performance init failed', e);
     }
   }
 

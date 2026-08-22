@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
@@ -16,16 +17,26 @@ import 'core/utils/logger_util.dart';
 import 'services/analytics_service.dart';
 import 'services/app_info_service.dart';
 import 'services/connectivity_service.dart';
+import 'services/deep_link_service.dart';
 import 'services/firebase/firebase_crashlytics_service.dart';
 import 'services/firebase/firebase_messaging_service.dart';
 
 Future<void> main() async {
   await bootstrap(flavor: _resolveFlavor());
-  runApp(const App());
+  runApp(
+    EasyLocalization(
+      supportedLocales: const [Locale('en', 'US')],
+      path: 'assets/translations',
+      fallbackLocale: const Locale('en', 'US'),
+      useOnlyLangCode: true,
+      child: const App(),
+    ),
+  );
 }
 
 Future<void> bootstrap({required Flavor flavor}) async {
   WidgetsFlutterBinding.ensureInitialized();
+  await EasyLocalization.ensureInitialized();
 
   await runZonedGuarded<Future<void>>(() async {
     await EnvConfig.load(flavor: flavor);
@@ -75,6 +86,9 @@ Future<void> _registerCoreServices() async {
         await FirebaseMessagingService(Get.find<SecureStorageService>()).init();
     Get.put<FirebaseMessagingService>(messaging, permanent: true);
   }
+
+  final deepLinks = await DeepLinkService().init();
+  Get.put<DeepLinkService>(deepLinks, permanent: true);
 }
 
 Flavor _resolveFlavor() {

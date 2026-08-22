@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get/get.dart' show GetxService;
+import 'package:http_certificate_pinning/http_certificate_pinning.dart';
 
 import '../config/app_config.dart';
 import '../config/env_config.dart';
@@ -15,6 +16,10 @@ class DioClient extends GetxService {
   DioClient(this._secureStorage);
 
   Dio get dio => _dio;
+
+  /// SHA-256 fingerprints for certificate pinning.
+  /// Populate with actual server certificate fingerprints before release.
+  static List<String> pinnedCertificates = const [];
 
   DioClient init({
     TokenRefresher? refreshToken,
@@ -38,6 +43,10 @@ class DioClient extends GetxService {
         refreshToken: refreshToken,
         onLogout: onLogout,
       ),
+      if (pinnedCertificates.isNotEmpty)
+        CertificatePinningInterceptor(
+          allowedSHAFingerprints: pinnedCertificates,
+        ),
       buildLoggingInterceptor(),
     ]);
 
